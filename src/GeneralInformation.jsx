@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function GeneralInformationForm() {
+function GeneralInformationForm({ currentGeneralInfo }) {
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -16,22 +16,22 @@ function GeneralInformationForm() {
       <>
         <form method="post" onSubmit={handleSubmit}>
         <label>
-          First Name: <input name="mySchool" defaultValue="" />
+          First Name: <input name="firstName" defaultValue={currentGeneralInfo.firstName} />
         </label>
         <label>
-          Last Name: <input name="mySchoolCity" defaultValue="" />
-        </label>
-        <hr />
-        <label>
-          Phone Number: <input name="phoneNumber" defaultValue="" />
+          Last Name: <input name="lastName" defaultValue={currentGeneralInfo.lastName} />
         </label>
         <hr />
         <label>
-          Linkedin: <input name="linkedin" defaultValue="" />
+          Phone Number: <input name="phoneNumber" defaultValue={currentGeneralInfo.phoneNumber} />
         </label>
         <hr />
         <label>
-          GitHub: <input name="github" defaultValue="" />
+          Linkedin: <input name="linkedin" defaultValue={currentGeneralInfo.linkedin}/>
+        </label>
+        <hr />
+        <label>
+          GitHub: <input name="github" defaultValue={currentGeneralInfo.github} />
         </label>
         <hr />
         <button type="reset">Reset form</button>
@@ -42,16 +42,19 @@ function GeneralInformationForm() {
   }
 
 export default function GeneralInformation() {
-    /*const [count, setCount] = useState(0)
-    const animals = ["Lion", "Cow", "Snake", "Lizard"];
-    const handleButtonClick = (url) => {
-      window.location.href = url;
-    };*/
+    const [genInfo, setGenInfo] = useState({
+      firstName: 'John',
+      lastName: 'Smith',
+      phoneNumber: '555-555-5555',
+      linkedin: '',
+      github: ''
+  });
+  
   
     return (
       <>
         <h3>General Information</h3>
-        <GeneralInformationForm></GeneralInformationForm>
+        <GeneralInformationForm currentGeneralInfo={genInfo} ></GeneralInformationForm>
       </>
     )
   
