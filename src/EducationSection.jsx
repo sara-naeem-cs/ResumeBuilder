@@ -23,10 +23,10 @@ function EducationForm() {
         </label>
         <hr />
         <label>
-          Start Date: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+          Start Date: <input type="date" name="startDate" />
         </label>
         <label>
-          End Date: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+          End Date: <input type="date" name="endDate" />
         </label>
         <hr />
         <button type="reset">Reset form</button>
@@ -37,11 +37,7 @@ function EducationForm() {
 }
 
 export default function EducationSection() {
-    /*const [count, setCount] = useState(0)
-    const animals = ["Lion", "Cow", "Snake", "Lizard"];
-    const handleButtonClick = (url) => {
-      window.location.href = url;
-    };*/
+
   
     return (
       <>

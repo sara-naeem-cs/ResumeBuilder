@@ -1,8 +1,20 @@
 import { useState } from 'react'
 
 function GeneralInformationForm() {
-    return (
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+  }  
+  return (
       <>
+        <form method="post" onSubmit={handleSubmit}>
         <label>
           First Name: <input name="mySchool" defaultValue="" />
         </label>
@@ -11,12 +23,20 @@ function GeneralInformationForm() {
         </label>
         <hr />
         <label>
-          Start Date: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
-        </label>
-        <label>
-          End Date: <input type="checkbox" name="myCheckbox" defaultChecked={true} />
+          Phone Number: <input name="phoneNumber" defaultValue="" />
         </label>
         <hr />
+        <label>
+          Linkedin: <input name="linkedin" defaultValue="" />
+        </label>
+        <hr />
+        <label>
+          GitHub: <input name="github" defaultValue="" />
+        </label>
+        <hr />
+        <button type="reset">Reset form</button>
+        <button type="submit">Submit form</button>
+        </form>
       </>
     );
   }
