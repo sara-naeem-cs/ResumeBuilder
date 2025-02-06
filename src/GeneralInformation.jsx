@@ -21,19 +21,15 @@ function GeneralInformationForm({ currentGeneralInfo }) {
         <label>
           Last Name: <input name="lastName" defaultValue={currentGeneralInfo.lastName} />
         </label>
-        <hr />
         <label>
           Phone Number: <input name="phoneNumber" defaultValue={currentGeneralInfo.phoneNumber} />
         </label>
-        <hr />
         <label>
           Linkedin: <input name="linkedin" defaultValue={currentGeneralInfo.linkedin}/>
         </label>
-        <hr />
         <label>
           GitHub: <input name="github" defaultValue={currentGeneralInfo.github} />
         </label>
-        <hr />
         <button type="reset">Reset form</button>
         <button type="submit">Submit form</button>
         </form>

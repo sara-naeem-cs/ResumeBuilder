@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
-function EducationForm() {
+function addExperience(setEducations, newEducation) {
+  setEducations((prevEducations) => [...prevEducations, newEducation]);
+}
+
+function EducationForm({ setEducations, length }) {
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
@@ -11,24 +15,31 @@ function EducationForm() {
 
         const formJson = Object.fromEntries(formData.entries());
         console.log(formJson);
+
+        const educationWithId = { ...formJson, id: length + 1 };
+
+        addExperience(setEducations, educationWithId)
+        
       }
     return (
       <>
         <form method="post" onSubmit={handleSubmit}>
         <label>
-          School: <input name="mySchool" defaultValue="Princeton" />
+          School Name: <input name="schoolName" defaultValue="State University" />
         </label>
         <label>
-          City: <input name="mySchoolCity" defaultValue="Chicago" />
-        </label>
-        <hr />
-        <label>
-          Start Date: <input type="date" name="startDate" />
+          Major: <input name="major" defaultValue="History" />
         </label>
         <label>
-          End Date: <input type="date" name="endDate" />
+          City: <input name="schoolLocation" defaultValue="Chicago" />
         </label>
-        <hr />
+        <label>
+          Start Date: <input type="date" name="educationStartDate" />
+        </label>
+        <label>
+          End Date: <input type="date" name="educationEndDate" />
+        </label>
+        
         <button type="reset">Reset form</button>
         <button type="submit">Submit form</button>
         </form>
@@ -37,12 +48,28 @@ function EducationForm() {
 }
 
 export default function EducationSection() {
+    const [educations, setEducations] = useState([]); //Declare empty list to start
+  
+    function deleteEducation(index){
+      const newEducationsList = educations.filter((education) => education.id !== index);
+      setEducations(newEducationsList);
+    }
 
+    const listEducations = educations.map((education) =>
+      <li  key={education.id}>
+         
+         <h5><b>{education.schoolName}:</b> {' ' + education.major + ' '} {education.schoolLocation}</h5>
+         <p>{education.educationStartDate} to {education.educationEndDate}</p>        
+         <button type="button" onClick={() => deleteEducation(education.id)}>Delete</button>
+      </li>
+    );
   
     return (
       <>
         <h3>Education:</h3>
-        <EducationForm></EducationForm>
+        <EducationForm setEducations={setEducations} length={educations.length} ></EducationForm>
+        <ul>{listEducations}</ul> {/* Render the experiences list here */}
+
       </>
     )
   

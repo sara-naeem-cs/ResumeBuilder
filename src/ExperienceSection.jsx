@@ -26,11 +26,15 @@ function ExperienceForm({ setExperiences, length }) {
         <label>
           Company Name: <input name="companyName" defaultValue="Company Name" />
         </label>
-        <hr />
         <label>
           Position: <input name="position" defaultValue="Some Position" />
         </label>
-        <hr />
+        <label>
+          Start Date: <input type="date" name="experienceStartDate" />
+        </label>
+        <label>
+          End Date: <input type="date" name="experienceEndDate" />
+        </label>
         <label>
           Description: 
           <textarea
@@ -40,7 +44,6 @@ function ExperienceForm({ setExperiences, length }) {
             cols="50" // Initial width
           />
         </label>
-        <hr />
         <button type="reset">Reset form</button>
         <button type="submit">Submit form</button>
         </form>
@@ -57,13 +60,12 @@ export default function GeneralInformation() {
     setExperiences(newExperiencesList);
   }
 
-  const listItems = experiences.map((experience) =>
+  const listExperiences = experiences.map((experience) =>
     <li  key={experience.id}>
-       <p>
-         <b>{experience.companyName}:</b>
-         {' ' + experience.position + ' '}
-         known for {experience.jobDescription}
-       </p>
+       
+       <h5><b>{experience.companyName}:</b> {' ' + experience.position + ' '}</h5>
+        <h6>{experience.experienceStartDate} - {experience.experienceEndDate}</h6>
+        <p>{experience.jobDescription}</p>
        <button type="button" onClick={() => deleteExperience(experience.id)}>Delete</button>
     </li>
   );
@@ -72,7 +74,7 @@ export default function GeneralInformation() {
       <>
         <h3>Experience:</h3>
         <ExperienceForm setExperiences={setExperiences} length={experiences.length}></ExperienceForm>
-        <ul>{listItems}</ul> {/* Render the experiences list here */}
+        <ul>{listExperiences}</ul> {/* Render the experiences list here */}
 
       </>
     )
