@@ -1,0 +1,27 @@
+.resume-container {
+    width: 600px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid black;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+  }
+  
+  .resume-container h1 {
+    text-align: center;
+  }
+  
+  .resume-container section {
+    margin-bottom: 20px;
+  }
+  
+  .resume-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .resume-container li {
+    margin-bottom: 10px;
+  }
+  
