@@ -10,6 +10,13 @@ import Resume from './resume.jsx'
 
 //createRoot(document.getElementById('root')).render(
 function App (){
+  const [genInfo, setGenInfo] = useState({
+    firstName: 'John',
+    lastName: 'Smith',
+    phoneNumber: '555-555-5555',
+    linkedin: '',
+    github: ''
+});
   const [experiences, setExperiences] = useState([
     {
       id: 1,
@@ -53,7 +60,7 @@ function App (){
     <GeneralInformation></GeneralInformation>
     <EducationSection></EducationSection>
     <ExperienceSection></ExperienceSection>
-    <Resume experiences={experiences} educations={educations} />
+    <Resume generalInformation={genInfo} experiences={experiences} educations={educations} />
   </StrictMode>
   )
 }

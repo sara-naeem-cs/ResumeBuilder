@@ -1,7 +1,7 @@
 import React from 'react';
 import './resume.css'; // Ensure you have styles for the resume layout
 
-export default function Resume({ experiences, educations }) {
+export default function Resume({ generalInformation, experiences, educations }) {
   return (
     <div className="resume-container">
       <h1>My Resume</h1>
