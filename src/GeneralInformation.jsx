@@ -1,57 +1,57 @@
 import { useState } from 'react'
 
-function GeneralInformationForm({ currentGeneralInfo }) {
-  function handleSubmit(e) {
-    // Prevent the browser from reloading the page
-    e.preventDefault();
 
-    // Read the form data
-    const form = e.target;
-    const formData = new FormData(form);
+export default function GeneralInformation({ genInfo, setGenInfo }) {
 
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-  }  
-  return (
+  function GeneralInformationForm() {
+    function handleSubmit(e) {
+      // Prevent the browser from reloading the page
+      e.preventDefault();
+
+      // Read the form data
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const updatedGenInfoValues = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        phoneNumber: formData.get('phoneNumber'),
+        linkedin: formData.get('linkedin'),
+        github: formData.get('github')
+      }
+      console.log(updatedGenInfoValues)
+      setGenInfo(updatedGenInfoValues)
+    }
+    return (
       <>
         <form method="post" onSubmit={handleSubmit}>
-        <label>
-          First Name: <input name="firstName" defaultValue={currentGeneralInfo.firstName} />
-        </label>
-        <label>
-          Last Name: <input name="lastName" defaultValue={currentGeneralInfo.lastName} />
-        </label>
-        <label>
-          Phone Number: <input name="phoneNumber" defaultValue={currentGeneralInfo.phoneNumber} />
-        </label>
-        <label>
-          Linkedin: <input name="linkedin" defaultValue={currentGeneralInfo.linkedin}/>
-        </label>
-        <label>
-          GitHub: <input name="github" defaultValue={currentGeneralInfo.github} />
-        </label>
-        <button type="reset">Reset form</button>
-        <button type="submit">Submit form</button>
+          <label>
+            First Name: <input name="firstName" defaultValue="" />
+          </label>
+          <label>
+            Last Name: <input name="lastName" defaultValue="" />
+          </label>
+          <label>
+            Phone Number: <input name="phoneNumber" defaultValue="" />
+          </label>
+          <label>
+            Linkedin: <input name="linkedin" defaultValue="" />
+          </label>
+          <label>
+            GitHub: <input name="github" defaultValue="" />
+          </label>
+          <button type="reset">Reset form</button>
+          <button type="submit">Update</button>
         </form>
       </>
     );
   }
 
-export default function GeneralInformation() {
-    const [genInfo, setGenInfo] = useState({
-      firstName: 'John',
-      lastName: 'Smith',
-      phoneNumber: '555-555-5555',
-      linkedin: '',
-      github: ''
-  });
-  
-  
-    return (
-      <>
-        <h3>General Information</h3>
-        <GeneralInformationForm currentGeneralInfo={genInfo} ></GeneralInformationForm>
-      </>
-    )
-  
+  return (
+    <>
+      <h3>General Information</h3>
+      <GeneralInformationForm></GeneralInformationForm>
+    </>
+  )
+
 }

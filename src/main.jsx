@@ -7,16 +7,21 @@ import GeneralInformation from './GeneralInformation.jsx'
 import EducationSection from './EducationSection.jsx'
 import ExperienceSection from './ExperienceSection.jsx'
 import Resume from './resume.jsx'
+import Skills from './Skills.jsx'
 
 //createRoot(document.getElementById('root')).render(
+
 function App (){
+
   const [genInfo, setGenInfo] = useState({
     firstName: 'John',
     lastName: 'Smith',
     phoneNumber: '555-555-5555',
-    linkedin: '',
-    github: ''
-});
+    linkedin: 'Linkedin Url',
+    github: 'Github Url'
+  });
+  const [skills, setSkills] = useState("Ex. Python, Java, HTML, CSS, etc.");
+
   const [experiences, setExperiences] = useState([
     {
       id: 1,
@@ -42,6 +47,7 @@ function App (){
       id: 1,
       schoolName: "State University",
       major: "Computer Science",
+      degreeType: "MSc.",
       schoolLocation: "New York, NY",
       educationStartDate: "2016-08-01",
       educationEndDate: "2020-05-15"
@@ -50,6 +56,7 @@ function App (){
       id: 2,
       schoolName: "City College",
       major: "Mathematics",
+      degreeType: "BSc.",
       schoolLocation: "Los Angeles, CA",
       educationStartDate: "2012-08-01",
       educationEndDate: "2016-06-10"
@@ -57,10 +64,11 @@ function App (){
   ]);
   return(
   <StrictMode>
-    <GeneralInformation></GeneralInformation>
-    <EducationSection></EducationSection>
-    <ExperienceSection></ExperienceSection>
-    <Resume generalInformation={genInfo} experiences={experiences} educations={educations} />
+    <GeneralInformation genInfo={genInfo} setGenInfo={setGenInfo}></GeneralInformation>
+    <Skills skillsInfo={skills} setSkillsInfo={setSkills}></Skills>
+    <EducationSection educations={educations} setEducations={setEducations}></EducationSection>
+    <ExperienceSection experiences={experiences} setExperiences={setExperiences}></ExperienceSection>
+    <Resume genInfo={genInfo} skills={skills} experiences={experiences} educations={educations} />
   </StrictMode>
   )
 }

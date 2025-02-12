@@ -5,72 +5,75 @@ function addExperience(setEducations, newEducation) {
 }
 
 function EducationForm({ setEducations, length }) {
-    function handleSubmit(e) {
-        // Prevent the browser from reloading the page
-        e.preventDefault();
-    
-        // Read the form data
-        const form = e.target;
-        const formData = new FormData(form);
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
 
-        const formJson = Object.fromEntries(formData.entries());
-        console.log(formJson);
+    // Read the form data
+    const form = e.target;
+    const formData = new FormData(form);
 
-        const educationWithId = { ...formJson, id: length + 1 };
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
 
-        addExperience(setEducations, educationWithId)
-        
-      }
-    return (
-      <>
-        <form method="post" onSubmit={handleSubmit}>
+    const educationWithId = { ...formJson, id: length + 1 };
+
+    addExperience(setEducations, educationWithId)
+
+  }
+  return (
+    <>
+      <form method="post" onSubmit={handleSubmit}>
         <label>
-          School Name: <input name="schoolName" defaultValue="State University" />
+          School Name: <input name="schoolName" defaultValue="" />
         </label>
         <label>
-          Major: <input name="major" defaultValue="History" />
+          Degree Type: <input name="degreeType" defaultValue="" />
         </label>
         <label>
-          City: <input name="schoolLocation" defaultValue="Chicago" />
+          Major: <input name="major" defaultValue="" />
         </label>
         <label>
-          Start Date: <input type="date" name="educationStartDate" />
+          City: <input name="schoolLocation" defaultValue="" />
         </label>
         <label>
-          End Date: <input type="date" name="educationEndDate" />
+          Start Date: <input type="date" name="" />
         </label>
-        
+        <label>
+          End Date: <input type="date" name="" />
+        </label>
+
         <button type="reset">Reset form</button>
         <button type="submit">Submit form</button>
-        </form>
-      </>
-    );
+      </form>
+    </>
+  );
 }
 
-export default function EducationSection() {
-    const [educations, setEducations] = useState([]); //Declare empty list to start
-  
-    function deleteEducation(index){
-      const newEducationsList = educations.filter((education) => education.id !== index);
-      setEducations(newEducationsList);
-    }
+export default function EducationSection({ educations, setEducations }) {
+  //const [educations, setEducations] = useState([]); //Declare empty list to start
 
-    const listEducations = educations.map((education) =>
-      <li  key={education.id}>
-         
-         <h5><b>{education.schoolName}:</b> {' ' + education.major + ' '} {education.schoolLocation}</h5>
-         <p>{education.educationStartDate} to {education.educationEndDate}</p>        
-         <button type="button" onClick={() => deleteEducation(education.id)}>Delete</button>
-      </li>
-    );
-  
-    return (
-      <>
-        <h3>Education:</h3>
-        <EducationForm setEducations={setEducations} length={educations.length} ></EducationForm>
-        <ul>{listEducations}</ul> {/* Render the experiences list here */}
-
-      </>
-    )
-  
+  function deleteEducation(index) {
+    const newEducationsList = educations.filter((education) => education.id !== index);
+    setEducations(newEducationsList);
   }
+
+  const listEducations = educations.map((education) =>
+    <li key={education.id}>
+
+      <h5><b>{education.schoolName}:</b> {education.degreeType}{' ' + education.major + ' '} {education.schoolLocation}</h5>
+      {/*<p>{education.educationStartDate} to {education.educationEndDate}</p>*/}
+      <button type="button" onClick={() => deleteEducation(education.id)}>Delete</button>
+    </li>
+  );
+
+  return (
+    <>
+      <h3>Education:</h3>
+      <EducationForm setEducations={setEducations} length={educations.length} ></EducationForm>
+      <ul>{listEducations}</ul> {/* Render the experiences list here */}
+
+    </>
+  )
+
+}

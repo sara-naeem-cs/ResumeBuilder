@@ -24,22 +24,22 @@ function ExperienceForm({ setExperiences, length }) {
       <>
         <form method="post" onSubmit={handleSubmit}>
         <label>
-          Company Name: <input name="companyName" defaultValue="Company Name" />
+          Company Name: <input name="companyName" defaultValue=""/>
         </label>
         <label>
-          Position: <input name="position" defaultValue="Some Position" />
+          Position: <input name="position" defaultValue=""/>
         </label>
         <label>
-          Start Date: <input type="date" name="experienceStartDate" />
+          Start Date: <input type="date" name="experienceStartDate"/>
         </label>
         <label>
-          End Date: <input type="date" name="experienceEndDate" />
+          End Date: <input type="date" name="experienceEndDate"/>
         </label>
         <label>
           Description: 
           <textarea
             name="jobDescription"
-            defaultValue="A job description would go here!"
+            defaultValue=""
             rows="4" // Initial height
             cols="50" // Initial width
           />
@@ -51,9 +51,9 @@ function ExperienceForm({ setExperiences, length }) {
     );
   }
 
-export default function GeneralInformation() {
+export default function EducationSection({ experiences, setExperiences}) {
     
-  const [experiences, setExperiences] = useState([]); //Declare empty list to start
+  //const [experiences, setExperiences] = useState([]); //Declare empty list to start
 
   function deleteExperience(index){
     const newExperiencesList = experiences.filter((experience) => experience.id !== index);
@@ -82,5 +82,4 @@ export default function GeneralInformation() {
 }
 
 
-// Figure out how to edit or delete an experience.
 // Look into how to do an edit
