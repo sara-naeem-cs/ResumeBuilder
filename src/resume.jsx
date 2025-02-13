@@ -30,9 +30,9 @@ export default function Resume({ genInfo, skills, experiences, educations }) {
         <section>
         <h3>
           {genInfo.email && <span>{genInfo.email} </span>}
-          {genInfo.phoneNumber && <span>{genInfo.phoneNumber} </span>}
-          {genInfo.linkedin && <span>{genInfo.linkedin} </span>}
-          {genInfo.github && <span>{genInfo.github} </span>}
+          {genInfo.phoneNumber && <span> | {genInfo.phoneNumber} </span>}
+          {genInfo.linkedin && <span> | {genInfo.linkedin} </span>}
+          {genInfo.github && <span> | {genInfo.github} </span>}
         </h3>
         </section>
 

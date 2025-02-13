@@ -57,7 +57,8 @@ function ExperienceForm({ setExperiences, length }) {
   );
 }
 
-export default function EducationSection({ experiences, setExperiences }) {
+export default function ExperienceSection({ experiences, setExperiences }) {
+  const [editExperience, setEditExperience] = useState(null);
 
   function deleteExperience(index) {
     const newExperiencesList = experiences.filter((experience) => experience.id !== index);

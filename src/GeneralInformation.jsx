@@ -52,10 +52,10 @@ export default function GeneralInformation({ genInfo, setGenInfo }) {
             Phone Number: <input name="phoneNumber" defaultValue={genInfo.phoneNumber} />
           </label>
           <label>
-            Linkedin: (Optional) <input name="linkedin" defaultValue={genInfo.linkedin} />
+            Linkedin: (Recommended) <input name="linkedin" defaultValue={genInfo.linkedin} />
           </label>
           <label>
-            GitHub: (Optional) <input name="github" defaultValue={genInfo.github} />
+            GitHub: (Recommended) <input name="github" defaultValue={genInfo.github} />
           </label>
           <div className="button-container">
             <button type="submit">Update</button>
