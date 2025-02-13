@@ -4,7 +4,11 @@ function addExperience(setExperiences, newExperience) {
   setExperiences((prevExperiences) => [...prevExperiences, newExperience]);
 }
 
-function ExperienceForm({ setExperiences, length }) {
+function getButtonText(editEducation) {
+  return editEducation ? 'Update' : 'Submit';
+}
+
+function ExperienceForm({ setExperiences, length, editEducation, setEditExperience }) {
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
@@ -49,8 +53,8 @@ function ExperienceForm({ setExperiences, length }) {
           />
         </label>
         <div className="button-container">
-          <button type="submit">Submit</button>
-          <button type="reset">Clear</button>
+          <button type="submit"> {getButtonText(editEducation)} </button>
+          <button type="reset" onClick={() => setEditExperience(null)}>Clear</button>
         </div>
       </form>
     </>
@@ -72,7 +76,7 @@ export default function ExperienceSection({ experiences, setExperiences }) {
       <p>{experience.jobDescription}</p>
       <div className="button-container">
         <button type="button" onClick={() => deleteExperience(experience.id)}>Delete</button>
-        <button type="button">Edit</button>
+        <button type="button" onClick={() => setEditExperience(experience)}>Edit</button>
       </div>
 
     </li>
@@ -81,7 +85,10 @@ export default function ExperienceSection({ experiences, setExperiences }) {
   return (
     <>
       <h3>Experience:</h3>
-      <ExperienceForm setExperiences={setExperiences} length={experiences.length}></ExperienceForm>
+      <ExperienceForm setExperiences={setExperiences} 
+      length={experiences.length} 
+      editExperience={editExperience} 
+      setEditExperience={setEditExperience}></ExperienceForm>
       <ul>{listExperiences}</ul>
     </>
   )
