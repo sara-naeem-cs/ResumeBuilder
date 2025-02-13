@@ -1,12 +1,21 @@
-<<<<<<< HEAD
-# ResumeBuilder
-=======
-# React + Vite
+# Resume Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+A web application that allows users to create, edit, and delete resume sections like general info, skills, experience, and education. The resume updates in real-time and can be downloaded as a formatted document.
 
-Currently, two official plugins are available:
+## Features
+- **Live Resume Preview** – Updates as users enter details.
+- **Editable Sections** – Modify or remove any input.
+- **Download Resume** – Export as a PDF.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
->>>>>>> f3a1c33 (Initial commit with create react app template)
+## **Visit the deployed application:** [**Resume Builder**](https://resume-builder-sara.netlify.app/)
+
+## Technologies Used
+- React.js, CSS
+- **PDF Generation:** html2pdf / jsPDF
+
+## License
+MIT License.
+
+Enjoy building your resume! 🚀
+
