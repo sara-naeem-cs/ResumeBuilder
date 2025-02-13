@@ -14,20 +14,26 @@ export default function Skills({ skillsInfo, setSkillsInfo }) {
       setSkillsInfo(formData.get('skillsDescription'))
 
     }
+
+    function clearForm(){
+      setSkillsInfo("");
+    }
+
     return (
       <>
         <form method="post" onSubmit={handleSubmit}>
           <label>
-            Skills:
             <textarea
               name="skillsDescription"
-              defaultValue=""
-              rows="4" // Initial height
-              cols="50" // Initial width
+              defaultValue={skillsInfo}
+              rows="5" // Initial height
+              cols="40" // Initial width
             />
           </label>
-          <button type="reset">Clear</button>
+          <div className="button-container">
           <button type="submit">Update</button>
+          <button onClick={clearForm}>Clear</button>
+        </div>
         </form>
       </>
     );

@@ -15,71 +15,74 @@ function ExperienceForm({ setExperiences, length }) {
 
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
-    
+
     const experienceWithId = { ...formJson, id: length + 1 };
 
     addExperience(setExperiences, experienceWithId)
-  }  
+
+    clearForm();
+
+  }
+
   return (
-      <>
-        <form method="post" onSubmit={handleSubmit}>
+    <>
+      <form method="post" onSubmit={handleSubmit}>
         <label>
-          Company Name: <input name="companyName" defaultValue=""/>
+          Company Name: <input name="companyName" defaultValue="" />
         </label>
         <label>
-          Position: <input name="position" defaultValue=""/>
+          Position: <input name="position" defaultValue="" />
         </label>
         <label>
-          Start Date: <input type="date" name="experienceStartDate"/>
+          Start Date: <input type="date" name="experienceStartDate" />
         </label>
         <label>
-          End Date: <input type="date" name="experienceEndDate"/>
+          End Date: <input type="date" name="experienceEndDate" />
         </label>
         <label>
-          Description: 
+          Description:
           <textarea
             name="jobDescription"
             defaultValue=""
-            rows="4" // Initial height
-            cols="50" // Initial width
+            rows="5" // Initial height
+            cols="40" // Initial width
           />
         </label>
-        <button type="reset">Reset form</button>
-        <button type="submit">Submit form</button>
-        </form>
-      </>
-    );
-  }
+        <div className="button-container">
+          <button type="submit">Submit</button>
+          <button type="reset">Clear</button>
+        </div>
+      </form>
+    </>
+  );
+}
 
-export default function EducationSection({ experiences, setExperiences}) {
-    
-  //const [experiences, setExperiences] = useState([]); //Declare empty list to start
+export default function EducationSection({ experiences, setExperiences }) {
 
-  function deleteExperience(index){
+  function deleteExperience(index) {
     const newExperiencesList = experiences.filter((experience) => experience.id !== index);
     setExperiences(newExperiencesList);
   }
 
   const listExperiences = experiences.map((experience) =>
-    <li  key={experience.id}>
-       
-       <h5><b>{experience.companyName}:</b> {' ' + experience.position + ' '}</h5>
-        <h6>{experience.experienceStartDate} - {experience.experienceEndDate}</h6>
-        <p>{experience.jobDescription}</p>
-       <button type="button" onClick={() => deleteExperience(experience.id)}>Delete</button>
+    <li key={experience.id}>
+
+      <h5><b>{experience.companyName}:</b> {' ' + experience.position + ' '}</h5>
+      <p>{experience.jobDescription}</p>
+      <div className="button-container">
+        <button type="button" onClick={() => deleteExperience(experience.id)}>Delete</button>
+        <button type="button">Edit</button>
+      </div>
+
     </li>
   );
 
-    return (
-      <>
-        <h3>Experience:</h3>
-        <ExperienceForm setExperiences={setExperiences} length={experiences.length}></ExperienceForm>
-        <ul>{listExperiences}</ul> {/* Render the experiences list here */}
+  return (
+    <>
+      <h3>Experience:</h3>
+      <ExperienceForm setExperiences={setExperiences} length={experiences.length}></ExperienceForm>
+      <ul>{listExperiences}</ul>
+    </>
+  )
 
-      </>
-    )
-  
 }
-
-
-// Look into how to do an edit

@@ -9,16 +9,16 @@ import ExperienceSection from './ExperienceSection.jsx'
 import Resume from './resume.jsx'
 import Skills from './Skills.jsx'
 
-//createRoot(document.getElementById('root')).render(
 
 function App (){
 
   const [genInfo, setGenInfo] = useState({
     firstName: 'John',
     lastName: 'Smith',
+    email: 'abc@gmail.com',
     phoneNumber: '555-555-5555',
-    linkedin: 'Linkedin Url',
-    github: 'Github Url'
+    linkedin: 'JohnSmith/linkedin.com',
+    github: 'JohnSmith/github.com'
   });
   const [skills, setSkills] = useState("Ex. Python, Java, HTML, CSS, etc.");
 
@@ -63,13 +63,20 @@ function App (){
     }
   ]);
   return(
-  <StrictMode>
-    <GeneralInformation genInfo={genInfo} setGenInfo={setGenInfo}></GeneralInformation>
-    <Skills skillsInfo={skills} setSkillsInfo={setSkills}></Skills>
-    <EducationSection educations={educations} setEducations={setEducations}></EducationSection>
-    <ExperienceSection experiences={experiences} setExperiences={setExperiences}></ExperienceSection>
-    <Resume genInfo={genInfo} skills={skills} experiences={experiences} educations={educations} />
-  </StrictMode>
+    <StrictMode>
+      <div className="app-container">
+        <div className="form-container">
+          <GeneralInformation genInfo={genInfo} setGenInfo={setGenInfo} />
+          <Skills skillsInfo={skills} setSkillsInfo={setSkills} />
+          <EducationSection educations={educations} setEducations={setEducations} />
+          <ExperienceSection experiences={experiences} setExperiences={setExperiences} />
+        </div>
+
+        <div className="resume-container">
+          <Resume genInfo={genInfo} skills={skills} experiences={experiences} educations={educations} />
+        </div>
+      </div>
+    </StrictMode>
   )
 }
 createRoot(document.getElementById('root')).render(<App />);

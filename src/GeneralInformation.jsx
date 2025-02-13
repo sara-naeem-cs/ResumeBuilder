@@ -15,6 +15,7 @@ export default function GeneralInformation({ genInfo, setGenInfo }) {
       const updatedGenInfoValues = {
         firstName: formData.get('firstName'),
         lastName: formData.get('lastName'),
+        email: formData.get('email'),
         phoneNumber: formData.get('phoneNumber'),
         linkedin: formData.get('linkedin'),
         github: formData.get('github')
@@ -22,26 +23,44 @@ export default function GeneralInformation({ genInfo, setGenInfo }) {
       console.log(updatedGenInfoValues)
       setGenInfo(updatedGenInfoValues)
     }
+
+    function clearForm() {
+      // Clear the form values by resetting the state to empty
+      setGenInfo({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        linkedin: '',
+        github: ''
+      });
+    }
+
     return (
       <>
         <form method="post" onSubmit={handleSubmit}>
           <label>
-            First Name: <input name="firstName" defaultValue="" />
+            First Name: <input name="firstName" defaultValue={genInfo.firstName} />
           </label>
           <label>
-            Last Name: <input name="lastName" defaultValue="" />
+            Last Name: <input name="lastName" defaultValue={genInfo.lastName} />
           </label>
           <label>
-            Phone Number: <input name="phoneNumber" defaultValue="" />
+            Email: <input name="email" defaultValue={genInfo.email} />
           </label>
           <label>
-            Linkedin: <input name="linkedin" defaultValue="" />
+            Phone Number: <input name="phoneNumber" defaultValue={genInfo.phoneNumber} />
           </label>
           <label>
-            GitHub: <input name="github" defaultValue="" />
+            Linkedin: (Optional) <input name="linkedin" defaultValue={genInfo.linkedin} />
           </label>
-          <button type="reset">Reset form</button>
-          <button type="submit">Update</button>
+          <label>
+            GitHub: (Optional) <input name="github" defaultValue={genInfo.github} />
+          </label>
+          <div className="button-container">
+            <button type="submit">Update</button>
+            <button onClick={clearForm}>Clear</button>
+          </div>
         </form>
       </>
     );

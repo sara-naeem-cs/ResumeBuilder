@@ -43,15 +43,16 @@ function EducationForm({ setEducations, length }) {
           End Date: <input type="date" name="" />
         </label>
 
-        <button type="reset">Reset form</button>
-        <button type="submit">Submit form</button>
+        <div className="button-container">
+          <button type="submit">Submit</button>
+          <button type="reset">Clear</button>
+        </div>
       </form>
     </>
   );
 }
 
 export default function EducationSection({ educations, setEducations }) {
-  //const [educations, setEducations] = useState([]); //Declare empty list to start
 
   function deleteEducation(index) {
     const newEducationsList = educations.filter((education) => education.id !== index);
@@ -60,10 +61,11 @@ export default function EducationSection({ educations, setEducations }) {
 
   const listEducations = educations.map((education) =>
     <li key={education.id}>
-
-      <h5><b>{education.schoolName}:</b> {education.degreeType}{' ' + education.major + ' '} {education.schoolLocation}</h5>
-      {/*<p>{education.educationStartDate} to {education.educationEndDate}</p>*/}
-      <button type="button" onClick={() => deleteEducation(education.id)}>Delete</button>
+      <h5><b>{education.schoolName}:</b> {education.degreeType}{' ' + education.major + ' '}</h5>
+      <div className="button-container">
+        <button type="button" onClick={() => deleteEducation(education.id)}>Delete</button>
+        <button type="button">Edit</button>
+      </div>
     </li>
   );
 
@@ -71,7 +73,7 @@ export default function EducationSection({ educations, setEducations }) {
     <>
       <h3>Education:</h3>
       <EducationForm setEducations={setEducations} length={educations.length} ></EducationForm>
-      <ul>{listEducations}</ul> {/* Render the experiences list here */}
+      <ul>{listEducations}</ul>
 
     </>
   )
